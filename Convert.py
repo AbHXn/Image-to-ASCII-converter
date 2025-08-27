@@ -21,12 +21,11 @@ def image_to_ascii(img_file, save_file):
         resized = pil_img.resize((new_width, new_height), Image.LANCZOS)
         resized = np.clip(np.array(resized), 0, 255).astype("uint8")
         with open(save_file, "w") as file:
-            for row in range(len(resized)):
-                for col in range(len(resized[0])):
+            for row in range(new_height)):
+                for col in range(new_width):
                     pixel = resized[row][col]
                     a_index = int((pixel / 255) * MAX_SIZE)
-                    if a_index >= MAX_SIZE:
-                        a_index -= 1
+                    if a_index >= MAX_SIZE: a_index -= 1
                     final_code = ASCII_CODES[a_index]
                     file.write(final_code)
                 file.write('\n')
@@ -38,8 +37,6 @@ def image_to_ascii(img_file, save_file):
 if len(sys.argv) != 2:
     print("provied image file")
     sys.exit(0)
-
 img_file = sys.argv[1]
 save_file = img_file.split(".")[0]+".txt"
 image_to_ascii(img_file, save_file)
-
