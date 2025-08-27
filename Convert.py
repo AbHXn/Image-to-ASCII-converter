@@ -21,7 +21,7 @@ def image_to_ascii(img_file, save_file):
         resized = pil_img.resize((new_width, new_height), Image.LANCZOS)
         resized = np.clip(np.array(resized), 0, 255).astype("uint8")
         with open(save_file, "w") as file:
-            for row in range(new_height)):
+            for row in range(new_height):
                 for col in range(new_width):
                     pixel = resized[row][col]
                     a_index = int((pixel / 255) * MAX_SIZE)
